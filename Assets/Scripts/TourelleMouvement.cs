@@ -21,12 +21,12 @@ using Assets.Scripts;
     private bool bestScoreSet = false;
     private float beginTime;
     private float currentTime;
+    private GameObject closestTarget;
 
     void Awake()
     {
         lesBalles = new Pool<Bullet>(new Bullet(balle));
         beginTime = Time.time;
-        Debug.Log(beginTime);
     }
 
     // Use this for initialization
@@ -54,11 +54,16 @@ using Assets.Scripts;
             currentTime = Time.time;
         }
     }
-
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(baseCanon.transform.position, baseCanon.transform.position+35*baseCanon.transform.forward);
+    }
 
     void FixedUpdate()
     {
-        if(!end)
+        
+        if (!end)
         {
             /**********************mode manuel****************************/
             if (!auto)
@@ -102,7 +107,7 @@ using Assets.Scripts;
             else
             {
 
-                GameObject closestTarget = getClosestTarget();
+                closestTarget = getClosestTarget();
                 if (closestTarget != null && Vector3.Distance(baseCanon.transform.position, closestTarget.transform.position) < 20)
                 {
                     Vector3 direction = closestTarget.transform.position - baseCanon.transform.position;
