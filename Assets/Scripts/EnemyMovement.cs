@@ -51,10 +51,10 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void lifeDown()
+    public void lifeDown(int nb)
     {
-        currentLife--;
-        if(currentLife == 0)
+        currentLife -= nb;
+        if(currentLife <= 0)
         {
             gameObject.SetActive(false);
             currentLife = life;

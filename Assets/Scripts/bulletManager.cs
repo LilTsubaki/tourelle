@@ -6,6 +6,7 @@ public class bulletManager : MonoBehaviour
 {
     public float timedOut = 3;
     private float currentTime = 0;
+    public int degats;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class bulletManager : MonoBehaviour
                 {
                     //Debug.Log("hit");
                     EnemyMovement enem = currentTarget.GetComponent<EnemyMovement>();
-                    enem.lifeDown();
+                    enem.lifeDown(degats);
                     gameObject.SetActive(false);
                 }
             }

@@ -22,7 +22,7 @@ namespace Assets.Scripts
         {
             prefab = pre;
             wayPoints = points;
-
+            //pre.transform.position = wayPoints[0].position;
             //Debug.Log(wayPoints[0].position);
         }
 
@@ -30,7 +30,7 @@ namespace Assets.Scripts
         {
             prefab = GameObject.Instantiate<GameObject>(b.prefab);
             wayPoints = b.wayPoints;
-            
+            //b.prefab.transform.position = wayPoints[0].position;
             prefab.GetComponent<EnemyMovement>().wayPoints = wayPoints;
         }
 
@@ -42,7 +42,7 @@ namespace Assets.Scripts
         public void putUnavailable()
         {
             prefab.SetActive(true);
-            prefab.transform.position = Vector3.zero;
+            prefab.transform.position = wayPoints[0].position;
             prefab.transform.rotation = Quaternion.identity;
             prefab.GetComponent<EnemyMovement>().cpt = 0;
             prefab.GetComponent<EnemyMovement>().first = true;

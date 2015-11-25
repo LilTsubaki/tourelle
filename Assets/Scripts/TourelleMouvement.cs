@@ -26,7 +26,6 @@ using Assets.Scripts;
     void Awake()
     {
         lesBalles = new Pool<Bullet>(new Bullet(balle));
-        beginTime = Time.time;
     }
 
     // Use this for initialization
@@ -37,22 +36,7 @@ using Assets.Scripts;
 
     void Update()
     {
-        if (Input.GetKeyDown("y"))
-        {
-            if (auto == true)
-            {
-                auto = false;
-            }
-            else
-            {
-                auto = true;
-            }
-        }
-        if (Input.GetKeyDown("p") && !end)
-        {
-            end = true;
-            currentTime = Time.time;
-        }
+
     }
     void OnDrawGizmosSelected()
     {
@@ -62,54 +46,9 @@ using Assets.Scripts;
 
     void FixedUpdate()
     {
-        
-        if (!end)
-        {
-            /**********************mode manuel****************************/
-            if (!auto)
+            closestTarget = getClosestTarget();
+            if (closestTarget != null && Vector3.Distance(baseCanon.transform.position, closestTarget.transform.position) < 20)
             {
-                if (Input.GetKey("space"))
-                {
-                    if (vitesseRotate < 35)
-                    {
-                        vitesseRotate += 0.1f;
-                    }
-                    canon.transform.Rotate(canon.transform.up, vitesseRotate, Space.World);
-                }
-                else
-                {
-                    if (vitesseRotate > 0)
-                    {
-                        canon.transform.Rotate(canon.transform.up, vitesseRotate, Space.World);
-                        vitesseRotate -= 0.2f;
-                    }
-                }
-
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    if (((baseCanon.transform.rotation.eulerAngles.z + 90) % 360) - Input.GetAxis("Vertical") * Time.fixedDeltaTime * 50 > 35)
-                    {
-                        baseCanon.transform.Rotate(-baseCanon.transform.right, Input.GetAxis("Vertical") * Time.fixedDeltaTime * 50, Space.World);
-                    }
-                }
-
-                if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    if (((baseCanon.transform.rotation.eulerAngles.z + 90) % 360) - Input.GetAxis("Vertical") * Time.fixedDeltaTime * 50 < 120)
-                    {
-                        baseCanon.transform.Rotate(-baseCanon.transform.right, Input.GetAxis("Vertical") * Time.fixedDeltaTime * 50, Space.World);
-                    }
-                }
-                baseCanon.transform.Rotate(baseTourelle.transform.up, Input.GetAxis("Horizontal") * Time.fixedDeltaTime * 50, Space.World);
-            }
-            /**********************mode auto****************************/
-            else
-            {
-
-                closestTarget = getClosestTarget();
-                if (closestTarget != null && Vector3.Distance(baseCanon.transform.position, closestTarget.transform.position) < 20)
-                {
                     Vector3 direction = closestTarget.transform.position - baseCanon.transform.position;
 
                     Debug.DrawLine(baseCanon.transform.position, closestTarget.transform.position, Color.red);
@@ -125,7 +64,7 @@ using Assets.Scripts;
                     vitesseRotate += 0.1f;
                 }
                 canon.transform.Rotate(canon.transform.up, vitesseRotate, Space.World);
-            }
+            
 
             if (vitesseRotate > 15)
             {
@@ -145,22 +84,10 @@ using Assets.Scripts;
                 }
             }
             else
-            {
-                effetTire.Stop();
-            }
-            nbFrameParBalle++;
-        }
-        else
         {
-            if(!bestScoreSet && currentTime > PlayerPrefs.GetFloat("bestScore"))
-            {
-                PlayerPrefs.SetFloat("bestScore", Time.time);
-                bestScoreSet = true;
-                
-            }
-            Debug.Log("Current time is : " + currentTime);
-            Debug.Log("Best time is :" + PlayerPrefs.GetFloat("bestScore"));
+            effetTire.Stop();
         }
+        nbFrameParBalle++;
     }
 
 
