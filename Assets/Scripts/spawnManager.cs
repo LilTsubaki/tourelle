@@ -34,7 +34,7 @@ namespace Assets.Scripts
             {
                 //Debug.Log("coroutine");
                 GameObject temp = Enemys.getFirst().prefab;
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
             }
         }
     }

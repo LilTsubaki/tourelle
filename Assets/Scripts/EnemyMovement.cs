@@ -6,8 +6,11 @@ public class EnemyMovement : MonoBehaviour
     public List<Transform> wayPoints;
     public int cpt = 0;
     public bool first = true;
-    private int life = 3;
-    private int currentLife = 3;
+    private int life = 6;
+    private int currentLife = 6;
+    public bool isDeletable = true;
+    private float timedOut = 1.0f;
+    private float currentTime = 0;
 
     // Use this for initialization
     void Awake()
@@ -23,8 +26,21 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        if(!isDeletable)
+        {
+            if (currentTime < timedOut)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                currentTime = 0;
+                isDeletable = true;
+            }
+        }
         
-        if(wayPoints[0] != null)
+
+            if (wayPoints[0] != null)
         {
             if (first)
             {
@@ -41,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
                     {
                         //cpt = -1;
                         gameObject.SetActive(false);
-                    }    
+                    }
                 }
                 else
                 {
@@ -49,16 +65,17 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
+        //Debug.Log(transform.GetComponent<Rigidbody>().angularVelocity.magnitude);
+        if (currentLife <= 0 && isDeletable)
+        {
+                gameObject.SetActive(false);
+                currentLife = life;
+        }    
     }
 
     public void lifeDown(int nb)
     {
         currentLife -= nb;
-        if(currentLife <= 0)
-        {
-            gameObject.SetActive(false);
-            currentLife = life;
-        }
     }
         
 }

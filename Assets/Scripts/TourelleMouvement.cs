@@ -16,9 +16,6 @@ using Assets.Scripts;
     private float vitesseRotate = 0;
     private int nbFrameParBalle = 0;
     private Pool<Bullet> lesBalles;
-    private bool auto = false;
-    private bool end = false;
-    private bool bestScoreSet = false;
     private float beginTime;
     private float currentTime;
     private GameObject closestTarget;
@@ -68,7 +65,7 @@ using Assets.Scripts;
 
             if (vitesseRotate > 15)
             {
-                if (nbFrameParBalle >= 20)
+                if (nbFrameParBalle >= 10)
                 {
                     GameObject temp = lesBalles.getFirst().prefab;
                     if (temp != null)

@@ -9,14 +9,14 @@ public class LanceGreandeScript : MonoBehaviour
     public GameObject baseCanon;
     public GameObject canon;
 
-    private Pool<Bullet> lesBalles;
+    private Pool<Grenade> lesGrenades;
     private GameObject closestTarget;
     private int nbFrameParBalle = 0;
 
 
     void Awake()
     {
-        lesBalles = new Pool<Bullet>(new Bullet(grenade));
+        lesGrenades = new Pool<Grenade>(new Grenade(grenade));
     }
 
 
@@ -31,17 +31,6 @@ public class LanceGreandeScript : MonoBehaviour
         closestTarget = getClosestTarget();
         if (closestTarget != null && Vector3.Distance(baseCanon.transform.position, closestTarget.transform.position) < 30)
         {
-            /*Vector3 direction = closestTarget.transform.position - baseCanon.transform.position;
-            direction.Normalize();
-            direction.y = 0;
-            Debug.DrawLine(baseCanon.transform.position, direction, Color.red);
-
-            Vector3 temp = new Vector3(baseCanon.transform.up.x, 0, baseCanon.transform.up.z);
-            Debug.DrawLine(baseCanon.transform.position, temp, Color.green);
-
-            Vector3 newDirection = Vector3.RotateTowards(direction, temp, 0.000000001f, 0.0f);
-            Debug.DrawLine(baseCanon.transform.position, newDirection, Color.blue);
-            baseCanon.transform.rotation = Quaternion.LookRotation(newDirection);*/
             Vector3 direction = closestTarget.transform.position - baseCanon.transform.position;
 
             Debug.DrawLine(baseCanon.transform.position, closestTarget.transform.position, Color.red);
@@ -53,7 +42,7 @@ public class LanceGreandeScript : MonoBehaviour
 
 
 
-            float velocity = Mathf.Sqrt(30.0f * 9.8f);
+            float velocity = Mathf.Sqrt(15.0f * 9.8f);
             float dist = Vector3.Distance(new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward, closestTarget.transform.position);
             float angle = Mathf.Asin(9.8f * dist / (velocity * velocity)) / 2.0f;
             
@@ -65,9 +54,9 @@ public class LanceGreandeScript : MonoBehaviour
             }
             
 
-            if (nbFrameParBalle >= 100)
+            if (nbFrameParBalle >= 150)
             {
-                GameObject grenadeTemp = lesBalles.getFirst().prefab;
+                GameObject grenadeTemp = lesGrenades.getFirst().prefab;
                 if (grenadeTemp != null)
                 {
                     grenadeTemp.transform.position = new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward;

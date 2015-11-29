@@ -25,7 +25,11 @@ public class bulletManager : MonoBehaviour
                 {
                     //Debug.Log("hit");
                     EnemyMovement enem = currentTarget.GetComponent<EnemyMovement>();
-                    enem.lifeDown(degats);
+                    if(enem != null)
+                    {
+                        enem.lifeDown(degats);
+                        
+                    }
                     gameObject.SetActive(false);
                 }
             }
