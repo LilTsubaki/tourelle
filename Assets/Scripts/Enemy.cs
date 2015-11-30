@@ -41,13 +41,14 @@ namespace Assets.Scripts
 
         public void putUnavailable()
         {
-            prefab.SetActive(true);
+            
             prefab.transform.position = wayPoints[0].position;
             prefab.transform.rotation = Quaternion.identity;
             prefab.GetComponent<Rigidbody>().velocity = Vector3.zero;
             prefab.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             prefab.GetComponent<EnemyMovement>().cpt = 0;
             prefab.GetComponent<EnemyMovement>().first = true;
+            prefab.SetActive(true);
         }
 
 

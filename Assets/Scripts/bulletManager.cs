@@ -21,7 +21,7 @@ public class bulletManager : MonoBehaviour
             GameObject currentTarget = getClosestTarget();
             if(currentTarget != null)
             {
-                if (Vector3.Distance(gameObject.transform.position, currentTarget.transform.position) < 1.0)
+                if (Vector3.Distance(gameObject.transform.position, currentTarget.transform.position) < 1.3)
                 {
                     //Debug.Log("hit");
                     EnemyMovement enem = currentTarget.GetComponent<EnemyMovement>();

@@ -6,8 +6,8 @@ public class EnemyMovement : MonoBehaviour
     public List<Transform> wayPoints;
     public int cpt = 0;
     public bool first = true;
-    private int life = 6;
-    private int currentLife = 6;
+    private int life = 20;
+    private int currentLife = 20;
     public bool isDeletable = true;
     private float timedOut = 1.0f;
     private float currentTime = 0;

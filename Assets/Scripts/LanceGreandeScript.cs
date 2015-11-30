@@ -40,8 +40,6 @@ public class LanceGreandeScript : MonoBehaviour
             baseCanon.transform.rotation = Quaternion.LookRotation(newDirection);
 
 
-
-
             float velocity = Mathf.Sqrt(15.0f * 9.8f);
             float dist = Vector3.Distance(new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward, closestTarget.transform.position);
             float angle = Mathf.Asin(9.8f * dist / (velocity * velocity)) / 2.0f;
@@ -61,12 +59,13 @@ public class LanceGreandeScript : MonoBehaviour
                 {
                     grenadeTemp.transform.position = new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward;
                     grenadeTemp.GetComponent<Rigidbody>().velocity=baseCanon.transform.forward * velocity;
-                    nbFrameParBalle = 0;
+                    
                 }
-
+                nbFrameParBalle = 0;
             }
+            nbFrameParBalle++;
         }
-        nbFrameParBalle++;
+       
     }
 
 
