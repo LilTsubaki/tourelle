@@ -5,7 +5,6 @@ using Assets.Scripts;
 
     public class TourelleMouvement : MonoBehaviour
 {
-    public Camera cam;
     public GameObject canon;
     public GameObject baseCanon;
     public GameObject baseTourelle;
@@ -44,24 +43,24 @@ using Assets.Scripts;
     void FixedUpdate()
     {
             closestTarget = getClosestTarget();
-            if (closestTarget != null && Vector3.Distance(baseCanon.transform.position, closestTarget.transform.position) < 20)
+        if (closestTarget != null && Vector3.Distance(baseCanon.transform.position, closestTarget.transform.position) < 20)
+        {
+            Vector3 direction = closestTarget.transform.position - baseCanon.transform.position;
+
+            Debug.DrawLine(baseCanon.transform.position, closestTarget.transform.position, Color.red);
+
+            Vector3 newDirection = Vector3.RotateTowards(baseCanon.transform.forward, direction, 2 * Time.deltaTime, 0.0f);
+
+            baseCanon.transform.rotation = Quaternion.LookRotation(newDirection);
+
+
+
+            if (vitesseRotate < 35)
             {
-                    Vector3 direction = closestTarget.transform.position - baseCanon.transform.position;
+                vitesseRotate += 0.1f;
+            }
+            canon.transform.Rotate(canon.transform.up, vitesseRotate, Space.World);
 
-                    Debug.DrawLine(baseCanon.transform.position, closestTarget.transform.position, Color.red);
-
-                    Vector3 newDirection = Vector3.RotateTowards(baseCanon.transform.forward, direction, 2 * Time.deltaTime, 0.0f);
-
-                    baseCanon.transform.rotation = Quaternion.LookRotation(newDirection);
-                }
-
-
-                if (vitesseRotate < 35)
-                {
-                    vitesseRotate += 0.1f;
-                }
-                canon.transform.Rotate(canon.transform.up, vitesseRotate, Space.World);
-            
 
             if (vitesseRotate > 15)
             {
@@ -81,10 +80,11 @@ using Assets.Scripts;
                 }
             }
             else
-        {
-            effetTire.Stop();
+            {
+                effetTire.Stop();
+            }
+            nbFrameParBalle++;
         }
-        nbFrameParBalle++;
     }
 
 
