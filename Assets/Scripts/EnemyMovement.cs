@@ -6,11 +6,12 @@ public class EnemyMovement : MonoBehaviour
     public List<Transform> wayPoints;
     public int cpt = 0;
     public bool first = true;
-    private int life = 20;
-    private int currentLife = 20;
+    private int life = 15;
+    private int currentLife = 15;
     public bool isDeletable = true;
     private float timedOut = 1.0f;
     private float currentTime = 0;
+    public bool isFrozen = false;
 
     // Use this for initialization
     void Awake()
@@ -40,7 +41,7 @@ public class EnemyMovement : MonoBehaviour
         }
         
 
-            if (wayPoints[0] != null)
+        if (wayPoints[0] != null)
         {
             if (first)
             {
@@ -61,15 +62,19 @@ public class EnemyMovement : MonoBehaviour
                 }
                 else
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, wayPoints[cpt + 1].position, 0.05f);
+                    if(!isFrozen)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, wayPoints[cpt + 1].position, 0.05f);
+                    }
                 }
             }
         }
         //Debug.Log(transform.GetComponent<Rigidbody>().angularVelocity.magnitude);
         if (currentLife <= 0 && isDeletable)
         {
-                gameObject.SetActive(false);
-                currentLife = life;
+            isFrozen = false;
+            gameObject.SetActive(false);
+            currentLife = life;
         }    
     }
 

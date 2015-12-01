@@ -7,15 +7,26 @@ public class TourelleLaser : MonoBehaviour
 
     public GameObject baseTourelle;
     public GameObject baseCanon;
+    public Material lineMaterial;
 
     private GameObject closestTarget;
     private int nbFrameParBalle = 0;
+    private LineRenderer lineRenderer;
 
+
+    //public Color c1 = Color.yellow;
+    //public Color c2 = Color.red;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        //lineRenderer.material = new Material(Shader.Find("Assets/Graphics/Textures/Metal"));
+        lineRenderer.material = lineMaterial;
+        //lineRenderer.SetColors(c1, c1);
+        lineRenderer.SetWidth(0.2F, 0.2F);
+        lineRenderer.SetVertexCount(2);
+
+    }
 
     void FixedUpdate()
     {
@@ -31,7 +42,11 @@ public class TourelleLaser : MonoBehaviour
             {
                 Vector3 temp = new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward;
                 RaycastHit rch;
-                if(Physics.Raycast(temp, closestTarget.transform.position - baseCanon.transform.position, out rch))
+
+                lineRenderer.SetPosition(0, temp);
+                lineRenderer.SetPosition(1, closestTarget.transform.position);
+
+                if (Physics.Raycast(temp, closestTarget.transform.position - baseCanon.transform.position, out rch))
                 {
                     EnemyMovement enem = rch.transform.GetComponent<EnemyMovement>();
                     if (enem != null)

@@ -41,7 +41,6 @@ namespace Assets.Scripts
 
         public void putUnavailable()
         {
-            
             prefab.transform.position = wayPoints[0].position;
             prefab.transform.rotation = Quaternion.identity;
             prefab.GetComponent<Rigidbody>().velocity = Vector3.zero;
