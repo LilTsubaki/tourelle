@@ -45,17 +45,18 @@ public class TourelleLaser : MonoBehaviour
             {
                 rayon.SetActive(false);
             }
-            if (nbFrameParBalle >= 10)
+            if (nbFrameParBalle >= 15)
             {
                 Vector3 temp = new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward;
                 RaycastHit rch;
 
                 lineRenderer.SetPosition(0, temp);
-                lineRenderer.SetPosition(1, closestTarget.transform.position);
+                
                 rayon.SetActive(true);
 
                 if (Physics.Raycast(temp, closestTarget.transform.position - baseCanon.transform.position, out rch))
                 {
+                    lineRenderer.SetPosition(1, rch.transform.position);
                     EnemyMovement enem = rch.transform.GetComponent<EnemyMovement>();
                     Shield shield = rch.collider.transform.GetComponent<Shield>();
                     if (enem != null)
