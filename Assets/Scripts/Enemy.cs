@@ -48,6 +48,12 @@ namespace Assets.Scripts
             prefab.GetComponent<EnemyMovement>().cpt = 0;
             prefab.GetComponent<EnemyMovement>().first = true;
             prefab.SetActive(true);
+
+
+            foreach (Transform child in prefab.transform.GetChild(0))
+            {
+                    child.gameObject.SetActive(true);
+            }
         }
 
 

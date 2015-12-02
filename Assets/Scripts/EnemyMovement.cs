@@ -6,8 +6,8 @@ public class EnemyMovement : MonoBehaviour
     public List<Transform> wayPoints;
     public int cpt = 0;
     public bool first = true;
-    private int life = 15;
-    private int currentLife = 15;
+    public int life;
+    public int currentLife;
     public bool isDeletable = true;
     private float timedOut = 1.0f;
     private float currentTime = 0;
@@ -70,7 +70,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         //Debug.Log(transform.GetComponent<Rigidbody>().angularVelocity.magnitude);
-        if (currentLife <= 0 && isDeletable)
+        if ((currentLife <= 0 && isDeletable) || transform.position.y < -4)
         {
             isFrozen = false;
             gameObject.SetActive(false);

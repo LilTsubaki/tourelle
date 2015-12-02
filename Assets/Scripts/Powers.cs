@@ -11,8 +11,6 @@ public class Powers : MonoBehaviour
     private bool is1Pressed = false;
 
     private bool isPower2Up = true;
-    private bool is2Pressed = false;
-
     private bool is3Pressed = false;
     private bool is4Pressed = false;
     private bool is5Pressed = false;
@@ -52,7 +50,7 @@ public class Powers : MonoBehaviour
             {
                 if (currentTimePower2 > timedOutPower2/4 && unfroze)
                 {
-                    Debug.Log("unfroze");
+                    //Debug.Log("unfroze");
                     GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
                     foreach (GameObject target in targets)
                     {
@@ -74,7 +72,6 @@ public class Powers : MonoBehaviour
         if (Input.GetKeyDown("1"))
         {
             is1Pressed = true;
-            is2Pressed = false;
             is3Pressed = false;
             is4Pressed = false;
             is5Pressed = false;
@@ -89,7 +86,6 @@ public class Powers : MonoBehaviour
                 target.transform.GetComponent<EnemyMovement>().isFrozen = true;
             }
             is1Pressed = false;
-            is2Pressed = true;
             isPower2Up = false;
             is3Pressed = false;
             is4Pressed = false;
@@ -99,7 +95,6 @@ public class Powers : MonoBehaviour
         if (Input.GetKeyDown("3"))
         {
             is1Pressed = false;
-            is2Pressed = false;
             is3Pressed = true;
             is4Pressed = false;
             is5Pressed = false;
@@ -107,7 +102,6 @@ public class Powers : MonoBehaviour
         if (Input.GetKeyDown("4"))
         {
             is1Pressed = false;
-            is2Pressed = false;
             is3Pressed = false;
             is4Pressed = true;
             is5Pressed = false;
@@ -115,7 +109,6 @@ public class Powers : MonoBehaviour
         if (Input.GetKeyDown("5"))
         {
             is1Pressed = false;
-            is2Pressed = false;
             is3Pressed = false;
             is4Pressed = false;
             is5Pressed = true;

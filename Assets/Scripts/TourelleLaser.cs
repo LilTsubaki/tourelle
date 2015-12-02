@@ -11,18 +11,21 @@ public class TourelleLaser : MonoBehaviour
 
     private GameObject closestTarget;
     private int nbFrameParBalle = 0;
+    public GameObject rayon;
     private LineRenderer lineRenderer;
 
 
     //public Color c1 = Color.yellow;
     //public Color c2 = Color.red;
 
+
     // Use this for initialization
     void Start () {
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        //lineRenderer = gameObject.AddComponent<LineRenderer>();
         //lineRenderer.material = new Material(Shader.Find("Assets/Graphics/Textures/Metal"));
-        lineRenderer.material = lineMaterial;
+        //lineRenderer.material = lineMaterial;
         //lineRenderer.SetColors(c1, c1);
+        lineRenderer = rayon.GetComponent<LineRenderer>();
         lineRenderer.SetWidth(0.2F, 0.2F);
         lineRenderer.SetVertexCount(2);
 
@@ -38,6 +41,10 @@ public class TourelleLaser : MonoBehaviour
 
             baseCanon.transform.rotation = Quaternion.LookRotation(newDirection);
 
+            if(nbFrameParBalle == 5)
+            {
+                rayon.SetActive(false);
+            }
             if (nbFrameParBalle >= 10)
             {
                 Vector3 temp = new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward;
@@ -45,20 +52,29 @@ public class TourelleLaser : MonoBehaviour
 
                 lineRenderer.SetPosition(0, temp);
                 lineRenderer.SetPosition(1, closestTarget.transform.position);
+                rayon.SetActive(true);
 
                 if (Physics.Raycast(temp, closestTarget.transform.position - baseCanon.transform.position, out rch))
                 {
                     EnemyMovement enem = rch.transform.GetComponent<EnemyMovement>();
+                    Shield shield = rch.collider.transform.GetComponent<Shield>();
                     if (enem != null)
                     {
                         enem.lifeDown(1);
                     }
+                    if (shield != null)
+                    {
+                        shield.lifeDown(1);
+                    }
                 }
-                nbFrameParBalle = 0;
+                nbFrameParBalle = 0; 
             }
             nbFrameParBalle++;
         }
-        
+        else
+        {
+            rayon.SetActive(false);
+        } 
     }
 
 
