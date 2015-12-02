@@ -15,13 +15,14 @@ namespace Assets.Scripts
 
         private SoundManager()
         {
+            Debug.Log("Constructeur soundManager");
             GameObject go = new GameObject("AudioSourcePerso");
             go.AddComponent<AudioSource>();
             lesAudioSources = new Pool<AudioSourcePerso>(new AudioSourcePerso(go));
             soundsList = new Dictionary<string, AudioData>();
         }
 
-        public SoundManager getInstance()
+        public static SoundManager getInstance()
         {
             if (sm == null)
                 sm = new SoundManager();
@@ -29,7 +30,7 @@ namespace Assets.Scripts
             return sm;
         }
 
-        public void addSound(String name, AudioData ad)
+        public void addAudioData(String name, AudioData ad)
         {
             soundsList[name] = ad;
         }
@@ -41,7 +42,8 @@ namespace Assets.Scripts
             if(soundsList.TryGetValue(name, out ad))
             {
                 asp = lesAudioSources.getFirst();
-                asp.audioSource.clip = ad.getSound();
+                asp.gameO.GetComponent<AudioSource>().clip = ad.getSound();
+                asp.gameO.transform.position = pos;
                 return asp;
             }
             else

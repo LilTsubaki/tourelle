@@ -476,6 +476,7 @@ GameObject:
   - 23: {fileID: 1913005153}
   - 114: {fileID: 1913005157}
   - 114: {fileID: 1913005158}
+  - 114: {fileID: 1913005159}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -575,3 +576,15 @@ MonoBehaviour:
   tourelleGrenade: {fileID: 146600, guid: b48255d21267e354c96b0f87b5b4384a, type: 2}
   tourelleLaser: {fileID: 185646, guid: 3fc195d2b8ce14e4e88a960c59b7dc79, type: 2}
   tourelleBalle: {fileID: 163488, guid: 7e348531b2dda0d48bd1930625cefeec, type: 2}
+--- !u!114 &1913005159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1913005152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67b2c67822858f54da12373e1f2aaf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac1: {fileID: 8300000, guid: 592df79a021d14c1f89701af35e4ad14, type: 3}

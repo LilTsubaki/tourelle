@@ -15,12 +15,17 @@ namespace Assets.Scripts
         public AudioClip getSound()
         {
             AudioClip ac = null;
-            if (cpt > sounds.Count)
+            if (cpt < sounds.Count)
             {
                 ac = sounds[cpt];
                 cpt++;
             }
             return ac;
+        }
+
+        public void addSound(AudioClip ac)
+        {
+            sounds.Add(ac);
         }
     }
 }

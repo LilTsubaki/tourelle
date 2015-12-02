@@ -9,7 +9,7 @@ namespace Assets.Scripts
     public class AudioSourcePerso : ObjetPoolable<AudioSourcePerso>
     {
         public GameObject gameO;
-        public AudioSource audioSource;
+        public static AudioSource audioSource = null;
 
         public AudioSourcePerso()
         {
@@ -30,6 +30,7 @@ namespace Assets.Scripts
         public void Copy(AudioSourcePerso asp)
         {
             gameO = GameObject.Instantiate<GameObject>(asp.gameO);
+
         }
 
         public void putUnavailable()
@@ -37,6 +38,7 @@ namespace Assets.Scripts
             gameO.SetActive(true);
 
             AudioSource aas = gameO.GetComponent<AudioSource>();
+
             aas.bypassEffects = audioSource.bypassEffects;
             aas.bypassListenerEffects = audioSource.bypassListenerEffects;
             aas.bypassReverbZones = audioSource.bypassReverbZones;
