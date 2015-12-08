@@ -14,6 +14,9 @@ namespace Assets.Scripts
         private AudioData ad2;
         public AudioClip ac4;
 
+        private AudioData ad3;
+        public AudioClip ac5;
+
         // Use this for initialization
         void Awake()
         {
@@ -26,6 +29,10 @@ namespace Assets.Scripts
             ad2 = new AudioData();
             ad2.addSound(ac4);
             SoundManager.getInstance().addAudioData("boom", ad2);
+
+            ad3 = new AudioData();
+            ad3.addSound(ac5);
+            SoundManager.getInstance().addAudioData("explo", ad3);
         }
 
         // Update is called once per frame

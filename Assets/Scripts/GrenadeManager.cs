@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Assets.Scripts;
 public class GrenadeManager : MonoBehaviour
 {
     public float timedOut = 0.4f;
@@ -24,6 +24,8 @@ public class GrenadeManager : MonoBehaviour
             }
             else
             {
+                AudioSourcePerso asp = SoundManager.getInstance().getSound("explo", Camera.main.gameObject.transform.position);
+                asp.gameO.GetComponent<AudioSource>().Play();
                 RaycastHit[] hits =  Physics.SphereCastAll(gameObject.transform.position, 2.0f, gameObject.transform.up);
                 foreach(RaycastHit hit in hits)
                 {
