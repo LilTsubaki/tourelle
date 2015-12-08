@@ -6,18 +6,26 @@ namespace Assets.Scripts
 
     public class InitSound : MonoBehaviour
     {
-        private AudioData ad;
+        private AudioData ad1;
         public AudioClip ac1;
+        public AudioClip ac2;
+        public AudioClip ac3;
+
+        private AudioData ad2;
+        public AudioClip ac4;
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
-            ad = new AudioData();
-            ad.addSound(ac1);
-            SoundManager.getInstance().addAudioData("pewpew", ad);
+            ad1 = new AudioData();
+            ad1.addSound(ac1);
+            ad1.addSound(ac2);
+            ad1.addSound(ac3);
+            SoundManager.getInstance().addAudioData("pewpew", ad1);
 
-            AudioSourcePerso asp = SoundManager.getInstance().getSound("pewpew", new Vector3(1.9f, 10.85f, -22.61f));
-            asp.gameO.GetComponent<AudioSource>().Play();
+            ad2 = new AudioData();
+            ad2.addSound(ac4);
+            SoundManager.getInstance().addAudioData("boom", ad2);
         }
 
         // Update is called once per frame

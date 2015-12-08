@@ -57,6 +57,9 @@ public class LanceGreandeScript : MonoBehaviour
                 GameObject grenadeTemp = lesGrenades.getFirst().prefab;
                 if (grenadeTemp != null)
                 {
+                    AudioSourcePerso asp = SoundManager.getInstance().getSound("boom", Camera.main.gameObject.transform.position);
+                    asp.gameO.GetComponent<AudioSource>().Play();
+
                     grenadeTemp.transform.position = new Vector3(baseCanon.transform.position.x, baseCanon.transform.position.y, baseCanon.transform.position.z) + 2.0f * baseCanon.transform.forward;
                     grenadeTemp.GetComponent<Rigidbody>().velocity=baseCanon.transform.forward * velocity;
                     

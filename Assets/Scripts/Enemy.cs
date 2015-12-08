@@ -29,6 +29,12 @@ namespace Assets.Scripts
         public void Copy(Enemy b)
         {
             prefab = GameObject.Instantiate<GameObject>(b.prefab);
+
+            if (GameObject.Find("enemyPool") == null)
+                new GameObject("enemyPool");
+    
+            prefab.transform.parent = GameObject.Find("enemyPool").transform;
+                            
             wayPoints = b.wayPoints;
             //b.prefab.transform.position = wayPoints[0].position;
             prefab.GetComponent<EnemyMovement>().wayPoints = wayPoints;

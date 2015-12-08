@@ -20,6 +20,12 @@ namespace Assets.Scripts
         public void Copy(Grenade b)
         {
             prefab = GameObject.Instantiate<GameObject>(b.prefab);
+
+            if (GameObject.Find("grenadePool") == null)
+                new GameObject("grenadePool");
+
+            prefab.transform.parent = GameObject.Find("grenadePool").transform;
+        
         }
 
         public bool isAvailable()

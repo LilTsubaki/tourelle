@@ -10,6 +10,7 @@ namespace Assets.Scripts
     {
         public GameObject gameO;
         public static AudioSource audioSource = null;
+        //public AudioSourcePersoManager aspm;
 
         public AudioSourcePerso()
         {
@@ -21,6 +22,13 @@ namespace Assets.Scripts
             if (audioSource == null)
                 audioSource = go.GetComponent<AudioSource>();
             gameO = go;
+            gameO.AddComponent<AudioSourcePersoManager>();
+
+
+            if (GameObject.Find("soundPool") == null)
+                new GameObject("soundPool");
+
+            gameO.transform.parent = GameObject.Find("soundPool").transform;
         }
 
         public bool isAvailable()
@@ -30,7 +38,7 @@ namespace Assets.Scripts
         public void Copy(AudioSourcePerso asp)
         {
             gameO = GameObject.Instantiate<GameObject>(asp.gameO);
-
+            gameO.transform.parent = GameObject.Find("soundPool").transform;
         }
 
         public void putUnavailable()
