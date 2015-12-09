@@ -13,7 +13,7 @@ namespace Assets.Scripts
         public static SoundManager sm = null;
         public Pool<AudioSourcePerso> lesAudioSources;
         public Dictionary<String, AudioData> soundsList;
-        private static AudioMixer mixer;
+        private static AudioMixer mixer;            
 
         private SoundManager()
         {
