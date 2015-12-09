@@ -57,7 +57,7 @@ public class TourelleLaser : MonoBehaviour
                 if (Physics.Raycast(temp, closestTarget.transform.position - baseCanon.transform.position, out rch))
                 {
 
-                    AudioSourcePerso asp = SoundManager.getInstance().getSound("pewpew", Camera.main.gameObject.transform.position);
+                    AudioSourcePerso asp = SoundManager.getInstance().getSound("pewpew", Camera.main.gameObject.transform.position, 0.2f, "SFX", false);
                     asp.gameO.GetComponent<AudioSource>().Play();
 
                     lineRenderer.SetPosition(1, rch.transform.position);

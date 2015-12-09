@@ -592,3 +592,5 @@ MonoBehaviour:
   ac3: {fileID: 8300000, guid: 3535722c57175449695abd945d3df695, type: 3}
   ac4: {fileID: 8300000, guid: e5ffe5ad56ed84f80b79cf081c6d0209, type: 3}
   ac5: {fileID: 8300000, guid: b00177400ce884a1f8777420c5b09e13, type: 3}
+  ac6: {fileID: 8300000, guid: def3f8ba61de22a4bafcc5b4709136ed, type: 3}
+  am: {fileID: 24100000, guid: e18c6c465fdbce34cafbbc4b8cc9dd92, type: 2}

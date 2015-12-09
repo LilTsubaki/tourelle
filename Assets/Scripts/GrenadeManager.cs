@@ -24,7 +24,7 @@ public class GrenadeManager : MonoBehaviour
             }
             else
             {
-                AudioSourcePerso asp = SoundManager.getInstance().getSound("explo", Camera.main.gameObject.transform.position);
+                AudioSourcePerso asp = SoundManager.getInstance().getSound("explo", Camera.main.gameObject.transform.position, 0.3f, "SFX", false);
                 asp.gameO.GetComponent<AudioSource>().Play();
                 RaycastHit[] hits =  Physics.SphereCastAll(gameObject.transform.position, 2.0f, gameObject.transform.up);
                 foreach(RaycastHit hit in hits)

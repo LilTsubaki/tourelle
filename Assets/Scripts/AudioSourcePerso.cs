@@ -10,6 +10,7 @@ namespace Assets.Scripts
     {
         public GameObject gameO;
         public static AudioSource audioSource = null;
+        private int volume;
         //public AudioSourcePersoManager aspm;
 
         public AudioSourcePerso()
