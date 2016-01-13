@@ -162,4 +162,28 @@ public class Powers : MonoBehaviour
             }
         }   
     }
+
+
+    public void laser()
+    {
+        is1Pressed = false;
+        is3Pressed = false;
+        is4Pressed = true;
+        is5Pressed = false;
+    }
+
+    public void grenade()
+    {
+        is1Pressed = false;
+        is3Pressed = true;
+        is4Pressed = false;
+        is5Pressed = false;
+    }
+    public void gatling()
+    {
+        is1Pressed = false;
+        is3Pressed = false;
+        is4Pressed = false;
+        is5Pressed = true;
+    }
 }

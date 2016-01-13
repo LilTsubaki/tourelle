@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
     public List<Transform> wayPoints;
     public int cpt = 0;
     public bool first = true;
-    public int life;
-    public int currentLife;
+    public float life;
+    public float currentLife;
     public bool isDeletable = true;
     private float timedOut = 1.0f;
     private float currentTime = 0;
     public bool isFrozen = false;
+    public Scrollbar lifeBar;
 
     // Use this for initialization
     void Awake()
@@ -27,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        lifeBar.transform.LookAt(Camera.main.transform);
         if(!isDeletable)
         {
             if (currentTime < timedOut)
@@ -64,7 +67,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     if(!isFrozen)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, wayPoints[cpt + 1].position, 0.05f);
+                        transform.position = Vector3.MoveTowards(transform.position, wayPoints[cpt + 1].position, 0.05f* Time.timeScale);
                     }
                 }
             }
@@ -81,6 +84,7 @@ public class EnemyMovement : MonoBehaviour
     public void lifeDown(int nb)
     {
         currentLife -= nb;
+        lifeBar.size = currentLife / life;
     }
         
 }

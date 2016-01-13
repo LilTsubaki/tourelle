@@ -49,7 +49,7 @@ namespace Assets.Scripts
             ad4.addSound(ac6);
             SoundManager.getInstance().addAudioData("music", ad4);
             
-            AudioSourcePerso asp = SoundManager.getInstance().getSound("music", Camera.main.gameObject.transform.position, 0.2f, "music", true);
+            AudioSourcePerso asp = SoundManager.getInstance().getSound("music", Camera.main.gameObject.transform.position, 0.2f, "Music", true);
             asp.gameO.GetComponent<AudioSource>().Play();
         }
 
